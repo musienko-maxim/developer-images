@@ -23,6 +23,7 @@ jobs:
     uses: devfile/developer-images/.github/workflows/ubi8-build.yaml@main
 
   smoke-api-tests-on-minikube:
+    steps:
     - name: Checkout WTO
       uses: actions/checkout@master
       with:
