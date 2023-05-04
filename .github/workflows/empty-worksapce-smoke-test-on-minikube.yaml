@@ -18,13 +18,11 @@ env:
    TS_API_TEST_KUBERNETES_COMMAND_LINE_TOOL: kubectl
 
 jobs:
-  reusable_workflow_job:
   build_ubi8_image_for_testing:
     uses: devfile/developer-images/.github/workflows/ubi8-build.yaml@main
 
   smoke-api-tests-on-minikube:
     runs-on: ubuntu-22.04
-    steps:
     - name: Checkout WTO
       uses: actions/checkout@master
       with:
