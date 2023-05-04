@@ -19,10 +19,14 @@ env:
 
 jobs:
   build_ubi8_image_for_testing:
-    runs-on: ubuntu-22.04
     uses: ./.github/workflows/ubi8-build.yaml
+    secrets:
+      QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
+      QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
 
   smoke-api-tests-on-minikube:
+    runs-on: ubuntu-22.04
+    needs: build_ubi8_image_for_testing
     steps:
     - name: Checkout WTO
       uses: actions/checkout@master
