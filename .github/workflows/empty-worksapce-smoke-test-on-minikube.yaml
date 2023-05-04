@@ -20,7 +20,7 @@ env:
 jobs:
   build_ubi8_image_for_testing:
     runs-on: ubuntu-22.04
-    uses: devfile/developer-images/.github/workflows/ubi8-build.yaml@main
+    uses: ./.github/workflows/ubi8-build.yaml
 
   smoke-api-tests-on-minikube:
     steps:
