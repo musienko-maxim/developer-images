@@ -18,6 +18,8 @@ env:
    TS_API_TEST_KUBERNETES_COMMAND_LINE_TOOL: kubectl
 
 jobs:
+  build_ubi8_image_for_testing:
+    uses: ./.github/workflows/ubi8-build.yaml
   smoke-api-tests-on-minikube:
     runs-on: ubuntu-22.04
     steps:
