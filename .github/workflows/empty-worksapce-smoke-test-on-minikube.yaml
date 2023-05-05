@@ -52,7 +52,9 @@ jobs:
       run: |
         cd devworkspace-operator
         make install_cert_manager
-        sleep 360
+        kubectl wait deployment -n cert-manager cert-manager --for condition=Available=True --timeout=90s
+        kubectl wait deployment -n cert-manager cert-manager-cainjector --for condition=Available=True --timeout=90s
+        kubectl wait deployment -n cert-manager cert-manager-webhook --for condition=Available=True --timeout=90s
 
     - name: Setup DWO
       run: |
