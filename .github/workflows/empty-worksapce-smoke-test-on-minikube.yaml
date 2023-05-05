@@ -16,17 +16,18 @@ on:  [workflow_dispatch]
 env:
    USERSTORY: CloneGitRepoAPI
    TS_API_TEST_KUBERNETES_COMMAND_LINE_TOOL: kubectl
+   DEPLOYMENT_TIMEOUT: 90s
 
 jobs:
-  build_ubi8_image_for_testing:
-    uses: ./.github/workflows/ubi8-build.yaml
-    secrets:
-      QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
-      QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+#   build_ubi8_image_for_testing:
+#     uses: ./.github/workflows/ubi8-build.yaml
+#     secrets:
+#       QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
+#       QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
 
   smoke-api-tests-on-minikube:
     runs-on: ubuntu-22.04
-    needs: build_ubi8_image_for_testing
+    #needs: build_ubi8_image_for_testing
     steps:
     - name: Checkout WTO
       uses: actions/checkout@master
@@ -52,9 +53,9 @@ jobs:
       run: |
         cd devworkspace-operator
         make install_cert_manager
-        kubectl wait deployment -n cert-manager cert-manager --for condition=Available=True --timeout=90s
-        kubectl wait deployment -n cert-manager cert-manager-cainjector --for condition=Available=True --timeout=90s
-        kubectl wait deployment -n cert-manager cert-manager-webhook --for condition=Available=True --timeout=90s
+        kubectl wait deployment -n cert-manager cert-manager --for condition=Available=True --timeout=$DEPLOYMENT_TIMEOUT
+        kubectl wait deployment -n cert-manager cert-manager-cainjector --for condition=Available=True --timeout=$DEPLOYMENT_TIMEOUT
+        kubectl wait deployment -n cert-manager cert-manager-webhook --for condition=Available=True --timeout=$DEPLOYMENT_TIMEOUT
 
     - name: Setup DWO
       run: |
