@@ -1,7 +1,7 @@
 
 name: Build of UBI 8 based Developer Images
 
-on:  workflow_dispatch
+on:  [workflow_dispatch]
 
 
 jobs:
