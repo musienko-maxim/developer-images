@@ -37,12 +37,14 @@ jobs:
           registry: quay.io
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Docker Build & Push Base
+        uses: docker/build-push-action@v4
         with:
           push: ${{ github.event_name != 'pull_request' }}
           provenance: false
           context: base/ubi8
           tags: |
-            quay.io/devfile/base-developer-image:latest
+            quay.io/mmusiien/base-developer-image:latest
             ${{ steps.meta.outputs.tags }}
 
   build_universal_ubi8_image:
@@ -57,7 +59,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            quay.io/mmusiien/universal-developer-image
+            quay.io/devfile/universal-developer-image
           flavor: |
             latest=true
             prefix=ubi8-,onlatest=true
