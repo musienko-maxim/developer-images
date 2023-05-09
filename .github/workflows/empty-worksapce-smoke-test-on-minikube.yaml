@@ -19,11 +19,11 @@ env:
    DEPLOYMENT_TIMEOUT: 90s
 
 jobs:
-#   build_ubi8_image_for_testing:
-#     uses: ./.github/workflows/ubi8-build.yaml
-#     secrets:
-#       QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
-#       QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+  build_ubi8_image_for_testing:
+    uses: ./.github/workflows/ubi8-build.yaml
+    secrets:
+      QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
+      QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
 
   smoke-api-tests-on-minikube:
     runs-on: ubuntu-22.04
