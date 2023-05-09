@@ -27,7 +27,7 @@ jobs:
 
   smoke-api-tests-on-minikube:
     runs-on: ubuntu-22.04
-    #needs: build_ubi8_image_for_testing
+    needs: build_ubi8_image_for_testing
     steps:
     - name: Checkout WTO
       uses: actions/checkout@master

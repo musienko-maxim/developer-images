@@ -36,7 +36,7 @@ jobs:
         with:
           registry: quay.io
           username: ${{ secrets.QUAY_USERNAME }}
-          password: ${{ secrets.ocker/build-push-action@v4
+          password: ${{ secrets.QUAY_PASSWORD }}
         with:
           push: ${{ github.event_name != 'pull_request' }}
           provenance: false
