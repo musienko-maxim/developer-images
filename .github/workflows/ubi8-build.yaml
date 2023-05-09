@@ -21,7 +21,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            quay.io/devfile/base-developer-image
+            quay.io/mmusiien/base-developer-image
           flavor: |
             latest=true
             prefix=ubi8-,onlatest=true
@@ -59,7 +59,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            quay.io/devfile/universal-developer-image
+            quay.io/mmusiien/universal-developer-image
           flavor: |
             latest=true
             prefix=ubi8-,onlatest=true
