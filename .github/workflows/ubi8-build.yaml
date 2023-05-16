@@ -33,6 +33,14 @@ jobs:
             prefix=ubi8-,onlatest=true
           tags: |
             type=sha,prefix=ubi8-,format=short
+
+
+      - name: Get tag with uniq prefix
+        - id: step1
+          run: |
+          UNIQ_TAG_IMAGE="$(echo $DOCKER_METADATA_OUTPUT_TAGS | cut -d ':' -f1):$DOCKER_METADATA_OUTPUT_VERSION"
+          echo "......................"$UNIQ_TAG_IMAGE
+          echo "uniq_tag=UNIQ_TAG_IMAGE" >> $GITHUB_OUTPUT
   #     - name: Set up QEMU
   #       uses: docker/setup-qemu-action@v2
   #     - name: Set up Docker Buildx
@@ -91,9 +99,4 @@ jobs:
   #           quay.io/mmusiien/universal-developer-image:latest
   #           ${{ steps.meta.outputs.tags }}
 
-      - name: Get tag with uniq prefix
-      - id: step1
-        run: |
-          UNIQ_TAG_IMAGE="$(echo $DOCKER_METADATA_OUTPUT_TAGS | cut -d ':' -f1):$DOCKER_METADATA_OUTPUT_VERSION"
-          echo "......................"$UNIQ_TAG_IMAGE
-        run: echo "uniq_tag=UNIQ_TAG_IMAGE" >> $GITHUB_OUTPUT
+
