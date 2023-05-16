@@ -92,7 +92,7 @@ jobs:
   #           ${{ steps.meta.outputs.tags }}
 
       - name: Get tag with uniq prefix
-        - id: step1
+      - id: step1
         run: |
           UNIQ_TAG_IMAGE="$(echo $DOCKER_METADATA_OUTPUT_TAGS | cut -d ':' -f1):$DOCKER_METADATA_OUTPUT_VERSION"
           echo "......................"$UNIQ_TAG_IMAGE
