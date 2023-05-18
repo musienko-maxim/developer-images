@@ -59,7 +59,7 @@ jobs:
     name: Build and publish universal ubi8 image to Quay.io
     runs-on: ubuntu-22.04
     needs: build_base_ubi8_image
-    # job output for passing to mapping value (the workflow_call section)
+   # job output for passing to mapping value (the workflow_call section)
     outputs:
       output1: ${{ steps.step1.outputs.uniq_tag }}
     steps:
