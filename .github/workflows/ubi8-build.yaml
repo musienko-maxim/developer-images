@@ -14,7 +14,7 @@ on:
     outputs:
       uniq_tag:
         description: "The first output string"
-        value: ${{ jobs.build_base_ubi8_image.outputs.output1 }}
+        value: ${{ jobs.build_universal_ubi8_image.outputs.output1 }}
 
 
 jobs:
