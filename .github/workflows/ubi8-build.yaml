@@ -49,15 +49,15 @@ jobs:
           registry: quay.io
           username: mmusiien
           password: ${{ secrets.QUAY_PASSWORD }}
-      - name: Docker Build & Push Base
-        uses: docker/build-push-action@v4
-        with:
-          push: ${{ github.event_name != 'pull_request' }}
-          provenance: false
-          context: base/ubi8
-          tags: |
-            quay.io/mmusiien/base-developer-image:latest
-            ${{ steps.meta.outputs.tags }}
+      # - name: Docker Build & Push Base
+      #   uses: docker/build-push-action@v4
+      #   with:
+      #     push: ${{ github.event_name != 'pull_request' }}
+      #     provenance: false
+      #     context: base/ubi8
+      #     tags: |
+      #       quay.io/mmusiien/base-developer-image:latest
+      #       ${{ steps.meta.outputs.tags }}
 
   build_universal_ubi8_image:
     name: Build and publish universal ubi8 image to Quay.io
@@ -87,20 +87,20 @@ jobs:
           registry: quay.io
           username: mmusiien
           password: ${{ secrets.QUAY_PASSWORD }}
-      - name: Docker Build & Push Universal
-        uses: docker/build-push-action@v4
-        with:
-          push: ${{ github.event_name != 'pull_request' }}
-          provenance: false
-          context: universal/ubi8
-          tags: |
-            quay.io/mmusiien/universal-developer-image:latest
-            ${{ steps.meta.outputs.tags }}
+      # - name: Docker Build & Push Universal
+      #   uses: docker/build-push-action@v4
+      #   with:
+      #     push: ${{ github.event_name != 'pull_request' }}
+      #     provenance: false
+      #     context: universal/ubi8
+      #     tags: |
+      #       quay.io/mmusiien/universal-developer-image:latest
+      #       ${{ steps.meta.outputs.tags }}
       - name: Get tag with uniq prefix
         id: step1
         # set the image with uniq tag prefix (for example: quay.io/..../base-developer-image:ubi8-7ad6cab) to env. var
         # and define it for output. This output with tag image will be used in caller job
         run: |
-          UNIQ_TAG_IMAGE="$DOCKER_META_IMAGES:$DOCKER_META_VERSION"
+          UNIQ_TAG_IMAGE= ${{ fromJSON($DOCKER_METADATA_OUTPUT_JSON).tags[0] }}
           echo "...................$UNIQ_TAG_IMAGE"
           echo "uniq_tag=$UNIQ_TAG_IMAGE" >> $GITHUB_OUTPUT
