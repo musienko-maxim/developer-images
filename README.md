@@ -156,3 +156,4 @@ Downstream builds can be found at the link below, which is _internal to Red Hat_
 # License
 
 Che is open sourced under the Eclipse Public License 2.0.
+********************
