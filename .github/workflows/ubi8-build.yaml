@@ -21,10 +21,6 @@ jobs:
   build_base_ubi8_image:
     name: Build and publish base ubi8 image to Quay.io
     runs-on: ubuntu-22.04
-   # job output for passing to mapping value (the workflow_call section)
-    outputs:
-      output1: ${{ steps.step1.outputs.uniq_tag }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -63,6 +59,9 @@ jobs:
     name: Build and publish universal ubi8 image to Quay.io
     runs-on: ubuntu-22.04
     needs: build_base_ubi8_image
+    # job output for passing to mapping value (the workflow_call section)
+    outputs:
+      output1: ${{ steps.step1.outputs.uniq_tag }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -102,6 +101,5 @@ jobs:
         # and define it for output. This output with tag image will be used in caller job
         run: |
           UNIQ_TAG_IMAGE=$(echo $DOCKER_METADATA_OUTPUT_JSON | jq .tags[0])
-
           echo "...................$UNIQ_TAG_IMAGE"
           echo "uniq_tag=$UNIQ_TAG_IMAGE" >> $GITHUB_OUTPUT
