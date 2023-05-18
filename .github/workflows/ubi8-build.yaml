@@ -101,5 +101,5 @@ jobs:
         # set the image with uniq tag prefix (for example: quay.io/..../base-developer-image:ubi8-7ad6cab) to env. var
         # and define it for output. This output with tag image will be used in caller job
         run: |
-          UNIQ_TAG_IMAGE="$(echo $DOCKER_METADATA_OUTPUT_TAGS | cut -d ':' -f1):$DOCKER_METADATA_OUTPUT_VERSION"
+          UNIQ_TAG_IMAGE="$DOCKER_META_IMAGES:$DOCKER_META_VERSION"
           echo "uniq_tag=$UNIQ_TAG_IMAGE" >> $GITHUB_OUTPUT
