@@ -11,7 +11,7 @@
 #
 
 name: Empty workspace smoke test
-on: [workflow_dispatch]
+on: [pull_request]
 
 env:
    USERSTORY: CloneGitRepoAPI
