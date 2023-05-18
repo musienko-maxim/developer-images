@@ -101,6 +101,7 @@ jobs:
         # set the image with uniq tag prefix (for example: quay.io/..../base-developer-image:ubi8-7ad6cab) to env. var
         # and define it for output. This output with tag image will be used in caller job
         run: |
-          UNIQ_TAG_IMAGE= ${{ fromJSON($DOCKER_METADATA_OUTPUT_JSON).tags[0] }}
+          UNIQ_TAG_IMAGE=$(echo $DOCKER_METADATA_OUTPUT_JSON | jq .tags[0])
+
           echo "...................$UNIQ_TAG_IMAGE"
           echo "uniq_tag=$UNIQ_TAG_IMAGE" >> $GITHUB_OUTPUT
