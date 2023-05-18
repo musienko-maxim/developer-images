@@ -102,4 +102,5 @@ jobs:
         # and define it for output. This output with tag image will be used in caller job
         run: |
           UNIQ_TAG_IMAGE="$DOCKER_META_IMAGES:$DOCKER_META_VERSION"
+          echo "...................$UNIQ_TAG_IMAGE"
           echo "uniq_tag=$UNIQ_TAG_IMAGE" >> $GITHUB_OUTPUT
