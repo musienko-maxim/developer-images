@@ -20,7 +20,7 @@ on:
 
 
 env:
-   USERSTORY: EmptyWorkspaceAPI
+   USERSTORY: CloneGitRepoAPI
    TS_API_TEST_KUBERNETES_COMMAND_LINE_TOOL: kubectl
    DEPLOYMENT_TIMEOUT: 90s
 
@@ -28,7 +28,10 @@ jobs:
   build_image_runner:
     # reuse existing workflow
     uses: ./.github/workflows/ubi8-build.yaml
-    secrets: inherit
+    secrets:
+      QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
+      QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+
   workspace-api-tests-on-minikube:
     runs-on: ubuntu-22.04
     needs: build_image_runner
@@ -50,7 +53,7 @@ jobs:
       with:
         repository: eclipse/che
         path: che
-
+ 
     - name: Install NodeJs
       uses: actions/setup-node@v3
 
